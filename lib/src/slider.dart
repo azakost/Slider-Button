@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:vibration/vibration.dart';
 
 import 'shimmer.dart';
 
@@ -104,10 +103,7 @@ class _SliderButtonState extends State<SliderButton> {
   Widget _control() => Container(
         height: widget.height,
         width: widget.width,
-        decoration: BoxDecoration(
-            color:
-                widget.disable ? Colors.grey.shade700 : widget.backgroundColor,
-            borderRadius: BorderRadius.circular(widget.radius)),
+        decoration: BoxDecoration(color: widget.disable ? Colors.grey.shade700 : widget.backgroundColor, borderRadius: BorderRadius.circular(widget.radius)),
         alignment: Alignment.centerLeft,
         child: Stack(
           alignment: Alignment.centerLeft,
@@ -116,8 +112,7 @@ class _SliderButtonState extends State<SliderButton> {
               alignment: widget.alignLabel,
               child: widget.shimmer && !widget.disable
                   ? Shimmer.fromColors(
-                      baseColor:
-                          widget.disable ? Colors.grey : widget.baseColor,
+                      baseColor: widget.disable ? Colors.grey : widget.baseColor,
                       highlightColor: widget.highlightedColor,
                       child: widget.label,
                     )
@@ -138,13 +133,9 @@ class _SliderButtonState extends State<SliderButton> {
                           Container(
                             height: widget.buttonSize,
                             width: widget.buttonSize,
-                            decoration: BoxDecoration(
-                                boxShadow: [
-                                  widget.boxShadow,
-                                ],
-                                color: Colors.grey,
-                                borderRadius:
-                                    BorderRadius.circular(widget.radius)),
+                            decoration: BoxDecoration(boxShadow: [
+                              widget.boxShadow,
+                            ], color: Colors.grey, borderRadius: BorderRadius.circular(widget.radius)),
                             child: Center(child: widget.icon),
                           ),
                     ),
@@ -152,9 +143,7 @@ class _SliderButtonState extends State<SliderButton> {
                 : Dismissible(
                     key: Key("cancel"),
                     direction: DismissDirection.startToEnd,
-                    dismissThresholds: {
-                      DismissDirection.startToEnd: widget.dismissThresholds
-                    },
+                    dismissThresholds: {DismissDirection.startToEnd: widget.dismissThresholds},
 
                     ///gives direction of swipping in argument.
                     onDismissed: (dir) async {
@@ -167,14 +156,6 @@ class _SliderButtonState extends State<SliderButton> {
                       });
 
                       widget.action();
-                      if (widget.vibrationFlag &&
-                          await Vibration.hasVibrator()) {
-                        try {
-                          Vibration.vibrate(duration: 200);
-                        } catch (e) {
-                          print(e);
-                        }
-                      }
                     },
                     child: Container(
                       width: widget.width - (widget.height),
@@ -187,13 +168,9 @@ class _SliderButtonState extends State<SliderButton> {
                           Container(
                             height: widget.buttonSize,
                             width: widget.buttonSize,
-                            decoration: BoxDecoration(
-                                boxShadow: [
-                                  widget.boxShadow,
-                                ],
-                                color: widget.buttonColor,
-                                borderRadius:
-                                    BorderRadius.circular(widget.radius)),
+                            decoration: BoxDecoration(boxShadow: [
+                              widget.boxShadow,
+                            ], color: widget.buttonColor, borderRadius: BorderRadius.circular(widget.radius)),
                             child: Center(child: widget.icon),
                           ),
                     ),
